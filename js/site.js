@@ -28,7 +28,7 @@ function reverseString(normalizedString) {
   return reverseString;
 }
 
-function checkForPalindrome(normalizedString, revString) {
+/* function checkForPalindrome(normalizedString, revString) {
 
   if (normalizedString == revString) {
     return true;
@@ -49,4 +49,45 @@ function displayResults(isPalindrome, reverseString) {
   }
 
   document.getElementById('alert').classList.remove('invisible');
+} */
+
+// Antonios Code
+
+function checkForPalindrome(normalizedString) {
+  let revString = '';
+
+  // the object
+  let returnObj = { msg: '', reversed: '' };
+
+  revString = reverseString(normalizedString);
+
+  if (normalizedString === revString) {
+    returnObj.msg = "Well done! You have a palindrome."
+  } else {
+    returnObj.msg = "Sorry.. You do not have a palindrome."
+  }
+
+  returnObj.reversed = revString;
+
+  return returnObj;
+
+}
+
+function displayResults(returnObj) {
+  
+  let msgAlert = document.getElementById('alert');
+  let alertHeader = document.getElementById('alertHeader');
+  
+  if(returnObj.msg.includes('Sorry')) {
+    msgAlert.classList.remove('alert-success');
+    msgAlert.classList.add('alert-danger');
+  } else {
+    msgAlert.classList.remove('alert-danger');
+    msgAlert.classList.add('alert-success');
+  }
+
+  alertHeader.innerHTML = returnObj.msg;
+  document.getElementById('msg').innerHTML = `Your word reversed is: ${returnObj.reversed}`;
+
+  msgAlert.classList.remove('invisible')
 }
