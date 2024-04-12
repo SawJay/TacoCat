@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>TacoCat: A coding challenge</title>
+    <title>Palindromin': A coding challenge</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +32,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-xxl">
-                <a class="navbar-brand" href="#"> <img src="/img/coloredlogosvg.svg" height="30">TacoCat</a>
+                <a class="navbar-brand" href="#"> <img src="/img/coloredlogosvg.svg" height="30">Palindromin'</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
                     aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -63,27 +63,85 @@
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-js">
-                        function displayMessage() {
-                            let inputBox = document.getElementById('message');
-                            let message = inputBox.value;
-                        
-                            Swal.fire({
-                                title: "TacoCat",
-                                text: message,
-                                icon: "success",
-                                backdrop: false
-                              });
-                        }
+                        function getValues() {
+
+                            let originalString = document.getElementById('inputString').value;
+                            // reverse the string
+                            let revString = reverseString(originalString)
+                            // check original to see if equals reverse
+                            let isPalindrome = checkForPalindrome(originalString, revString);
+                            // display the 3 values in a message
+                            displayResults(isPalindrome, originalString, revString);
+                          
+                          }
+                          
+                          function reverseString (originalString) {
+                          
+                            let reverseString = '';
+                            
+                            // radar
+                            for (let index = originalString.length - 1; index >= 0; index--) {
+                              
+                              // r + a + d + a + r
+                              reverseString += originalString[index];
+                          
+                            }
+                          
+                            return reverseString;
+                          }
+                          
+                          function checkForPalindrome(originalString, revString) {
+                          
+                            if (originalString == revString) {
+                              return true; 
+                            } else {
+                              return false;
+                            }
+                          
+                          }
+                          
+                          function displayResults(isPalindrome) {
+                          
+                            if (isPalindrome == true ) {
+                            document.getElementById('msg').innerHTML = `<strong>${isPalindrome}</strong> your word is a palindrome!`
+                           }
+                          
+                           else {
+                              document.getElementById('msg').innerHTML = `<strong>${isPalindrome}</strong> your word is not a palindrome.` 
+                           }
+                          
+                            document.getElementById('alert').classList.remove('invisible'); 
+                          }
+                          
                     </code>
                 </pre>
             </div>
             <!-- The Codes explanation -->
             <div class="col-12 col-lg-4">
-                <p>The Code is strctured in one function.</p>
-                <h5><code>displayMessage()</code></h5>
+                <p>The Code is strctured in four functions.</p>
+                <h5><code>getValues()</code></h5>
                 <p>
-                    The <code>displayMessage</code> function gets the text from the input element and displays it in a
-                    Sweet Alert popup.
+                    The <code>getValues</code> function gathers user input from the HTML element with the id
+                    "originalString". If the input is empty,
+                    it prompts the user to enter text. After validation, it reverses the input using a decrementing
+                    loop, stores it in an array.
+                </p>
+                <h5><code>reverseString()</code></h5>
+                <p>
+                    This function serves as a step for reversing the user's original word. It collects and
+                    processes the necessary data for the reversal.
+                </p>
+                <h5><code>checkForPalindrome()</code></h5>
+                <p>
+                    The <code>checkForPalindrome</code> function compares originalString and revString values. It
+                    initializes a
+                    variable and determines if they are identical, assigning true if they match, and false otherwise.
+                    Subsequently, it returns this variable to the getValues function.
+                </p>
+                <h5><code>displayResults()</code></h5>
+                <p>
+                    The <code>displayResults</code> function receives the isPalindrome variable. It then
+                    uses an if/else statement to determine if the checked value is true or false.
                 </p>
             </div>
         </div>

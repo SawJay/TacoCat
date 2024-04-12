@@ -36,9 +36,15 @@ function checkForPalindrome(originalString, revString) {
 
 }
 
-function displayResults(isPalindrome, originalString, revString) {
+function displayResults(isPalindrome) {
 
-  document.getElementById('alert').classList.remove('invisible');
-  document.getElementById('msg').innerHTML = `Your string reversed is: <strong>${revString}</strong>`
+  if (isPalindrome == true ) {
+  document.getElementById('msg').innerHTML = `<strong>${isPalindrome}</strong> your word is a palindrome!`
+ }
 
+ else {
+    document.getElementById('msg').innerHTML = `<strong>${isPalindrome}</strong> your word is not a palindrome.` 
+ }
+
+  document.getElementById('alert').classList.remove('invisible'); 
 }
